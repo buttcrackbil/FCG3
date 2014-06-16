@@ -1,17 +1,16 @@
-package fcg;
+package fcg.listeners;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Stops moving cards when mouse leaves frame
+ * Resets DragListener variable
  * 
  * @author Alex
- *
+ * 
  */
-public class FrameListener implements MouseListener {
-
-	static boolean drag = true;
+public class ClickedListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -21,24 +20,22 @@ public class FrameListener implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		drag = true;
+		FrameListener.drag = true;
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		drag = false;
+		FrameListener.drag = false;
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+		DragListener.lastPoint = new Point();
 	}
 
 }

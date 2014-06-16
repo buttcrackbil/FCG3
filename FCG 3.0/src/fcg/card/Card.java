@@ -1,10 +1,14 @@
-package fcg;
+package fcg.card;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
+
+import fcg.Game;
+import fcg.listeners.ClickedListener;
+import fcg.listeners.DragListener;
 
 /**
  * A displayable card

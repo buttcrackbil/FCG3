@@ -1,9 +1,13 @@
-package fcg;
+package fcg.listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.SwingUtilities;
+
+import fcg.Game;
+import fcg.panels.LabelButton;
+import fcg.sp.SinglePlayer;
 
 /**
  * Listener for the main buttons
@@ -18,16 +22,12 @@ public class MainListener implements MouseListener {
 		if (SwingUtilities.isLeftMouseButton(arg0)) {
 			LabelButton button = (LabelButton) arg0.getSource();
 			if (button == Game.quit) {
-				System.out.println("Quitting game");
 				System.exit(0);
 			}
 			if (button == Game.singlePlayer) {
-				System.out.println("Starting singleplayer");
-				Game.card.hurt(5);
+				SinglePlayer.selectPlayer();
 			}
 			if (button == Game.multiPlayer) {
-				System.out.println("Starting multiplayer");
-				Game.card.heal(5);
 			}
 		}
 	}

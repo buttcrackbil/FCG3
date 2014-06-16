@@ -6,6 +6,10 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import fcg.listeners.FrameListener;
+import fcg.listeners.MainListener;
+import fcg.panels.LabelButton;
+
 /**
  * Main frame
  * 
@@ -38,11 +42,6 @@ public class Game extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	public static int cardHeight;
-	
-	/**
-	 * For testing purposes
-	 */
-	public static LivingCard card;
 
 	/**
 	 * Makes a full screen frame with no decoration
@@ -75,13 +74,9 @@ public class Game extends JFrame {
 		singlePlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20), 0);
 		multiPlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20),
 				(frame.getWidth() / 20) + 10);
-		card = new LivingCard("Debug Card", 100, 10, "pic.png", new String[]{
-				"Description"
-		});
 		panel.add(quit);
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);
-		panel.add(card);
 		frame.add(panel);
 	}
 

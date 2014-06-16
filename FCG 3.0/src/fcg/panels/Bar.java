@@ -1,8 +1,10 @@
-package fcg;
+package fcg.panels;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+
+import fcg.Game;
 
 /**
  * Creates bar that keeps track of a variable

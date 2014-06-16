@@ -1,4 +1,4 @@
-package fcg;
+package fcg.panels;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
+
+import fcg.Game;
 
 /**
  * Clickable label

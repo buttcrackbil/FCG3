@@ -1,7 +1,12 @@
-package fcg;
+package fcg.card;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import fcg.Game;
+import fcg.listeners.ClickedListener;
+import fcg.listeners.DragListener;
+import fcg.panels.Bar;
 
 /**
  * Card that has health and attack

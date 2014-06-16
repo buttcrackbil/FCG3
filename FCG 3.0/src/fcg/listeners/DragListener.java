@@ -1,4 +1,4 @@
-package fcg;
+package fcg.listeners;
 
 import java.awt.Component;
 import java.awt.Point;
@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
+
+import fcg.Game;
+import fcg.card.Card;
 
 /**
  * Allows card to be dragged
