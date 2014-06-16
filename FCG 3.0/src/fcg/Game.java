@@ -78,6 +78,7 @@ public class Game extends JFrame {
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);
 		frame.add(panel);
+		Client.selectPlayer();
 	}
 
 	@Override

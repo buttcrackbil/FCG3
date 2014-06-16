@@ -39,7 +39,7 @@ public class Users extends JPanel {
 				panel.add(labels[x]);
 			}
 		}else if(labels.length == 0){
-			JLabel label = new JLabel("No Users. Create New User");
+			JLabel label = new JLabel("No Users. Create New User.");
 			label.setLocation(0, 0);
 			label.setSize(getWidth(), 50);
 			panel.add(label);

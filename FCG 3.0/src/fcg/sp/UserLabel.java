@@ -18,7 +18,10 @@ import fcg.Game;
 @SuppressWarnings("serial")
 public class UserLabel extends JLabel {
 
-	static JLabel selected = null;
+	/**
+	 * The selected user
+	 */
+	public static JLabel selected = null;
 
 	/**
 	 * @param name String to be displayed on label

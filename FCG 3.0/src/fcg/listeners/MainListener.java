@@ -25,7 +25,7 @@ public class MainListener implements MouseListener {
 				System.exit(0);
 			}
 			if (button == Game.singlePlayer) {
-				SinglePlayer.selectPlayer();
+				SinglePlayer.start();
 			}
 			if (button == Game.multiPlayer) {
 			}
