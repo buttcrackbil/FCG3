@@ -3,6 +3,12 @@ package fcg;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Stops moving cards when mouse leaves frame
+ * 
+ * @author Alex
+ *
+ */
 public class FrameListener implements MouseListener {
 
 	static boolean drag = true;

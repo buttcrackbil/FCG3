@@ -4,13 +4,15 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
+/**
+ * Creates bar that keeps track of a variable
+ * 
+ * @author Alex
+ *
+ */
 public class Bar {
 
 	private static Color[] colors = new Color[2];
-
-	private static int radius;
 
 	private static int maxPoints;
 

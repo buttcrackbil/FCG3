@@ -39,6 +39,9 @@ public class Game extends JFrame {
 	@SuppressWarnings("javadoc")
 	public static int cardHeight;
 	
+	/**
+	 * For testing purposes
+	 */
 	public static LivingCard card;
 
 	/**
