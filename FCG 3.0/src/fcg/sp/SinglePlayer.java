@@ -1,6 +1,8 @@
 package fcg.sp;
 
+import fcg.Client;
 import fcg.Game;
+import fcg.city.City;
 
 /**
  * Place where all singleplayer things are started
@@ -15,7 +17,7 @@ public class SinglePlayer {
 	 */
 	public static void start() {
 		Game.panel.removeAll();
-		Game.panel.add(Game.quit);
+		((City)City.cities[Client.getCity()]).show(Game.panel);
 		Game.panel.repaint();
 	}
 }

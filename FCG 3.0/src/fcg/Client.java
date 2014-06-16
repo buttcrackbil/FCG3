@@ -26,7 +26,7 @@ import fcg.sp.Users;
  * Keeps track of all client sided info
  * 
  * @author Alex
- *
+ * 
  */
 public class Client {
 
@@ -39,7 +39,7 @@ public class Client {
 	static boolean out;
 
 	private static String playerName;
-	
+
 	private static int city;
 
 	protected static File dir = new File(System.getProperty("user.home")
@@ -77,7 +77,11 @@ public class Client {
 				JLabel label = (JLabel) arg0.getSource();
 				switch (label.getText()) {
 				case "Cancel":
-					System.exit(0);
+					if (playerName == null) {
+						System.exit(0);
+					}else {
+						
+					}
 					break;
 				case "Accept":
 					if (UserLabel.selected != null) {
@@ -180,7 +184,13 @@ public class Client {
 	}
 
 	private static void deleteUser(String user) {
+		System.out.println("Deleting " + user);
 		File newDir = new File(dir + "/" + user);
+		String[] files = newDir.list();
+		for (int i = 0; i < files.length; i++) {
+			File dir = new File(newDir + "/" + files[i]);
+			dir.delete();
+		}
 		newDir.delete();
 		Game.panel.remove(panel);
 		Game.panel.repaint();
@@ -198,6 +208,7 @@ public class Client {
 			FileWriter fw = new FileWriter(infoFile.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(user);
+			bw.newLine();
 			bw.write(0);
 			bw.close();
 		} catch (IOException e) {
@@ -230,13 +241,13 @@ public class Client {
 	public static String getName() {
 		return playerName;
 	}
-	
+
 	/**
 	 * Gets city id that character is in
 	 * 
 	 * @return City id
 	 */
-	public static int getCity(){
+	public static int getCity() {
 		return city;
 	}
 }

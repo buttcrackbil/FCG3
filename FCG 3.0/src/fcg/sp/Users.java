@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
  * Panel that contains a scroll pane with all users
  * 
  * @author Alex
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class Users extends JPanel {
@@ -20,9 +20,12 @@ public class Users extends JPanel {
 	/**
 	 * A scroll pane with all users
 	 * 
-	 * @param i Width of pane
-	 * @param j Height of pane
-	 * @param strings User Names
+	 * @param i
+	 *            Width of pane
+	 * @param j
+	 *            Height of pane
+	 * @param strings
+	 *            User Names
 	 */
 	public Users(int i, int j, String... strings) {
 		setSize(i, j);
@@ -38,7 +41,7 @@ public class Users extends JPanel {
 				labels[x].setLocation(0, x * 50);
 				panel.add(labels[x]);
 			}
-		}else if(labels.length == 0){
+		} else if (labels.length == 0) {
 			JLabel label = new JLabel("No Users. Create New User.");
 			label.setLocation(0, 0);
 			label.setSize(getWidth(), 50);

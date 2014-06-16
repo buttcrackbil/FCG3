@@ -13,7 +13,7 @@ import fcg.Game;
  * Label that is selectable
  * 
  * @author Alex
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class UserLabel extends JLabel {
@@ -21,10 +21,11 @@ public class UserLabel extends JLabel {
 	/**
 	 * The selected user
 	 */
-	public static JLabel selected = null;
+	public static JLabel selected;
 
 	/**
-	 * @param name String to be displayed on label
+	 * @param name
+	 *            String to be displayed on label
 	 */
 	public UserLabel(String name) {
 		super(name);
@@ -35,16 +36,22 @@ public class UserLabel extends JLabel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
-				repaint();
-				if (selected != null) {
+				UserLabel label = (UserLabel) arg0.getSource();
+				if (selected == label) {
 					selected.setBorder(null);
-					selected.repaint();
-				}
-				if (selected == (UserLabel) arg0.getSource()) {
 					selected = null;
 				} else {
-					selected = (UserLabel) arg0.getSource();
+					if (selected != null) {
+						selected.setBorder(null);
+						selected.repaint();
+						selected = label;
+						label.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+						label.repaint();
+					}else{
+						selected = label;
+						label.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+						label.repaint();
+					}
 				}
 			}
 
