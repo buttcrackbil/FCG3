@@ -49,6 +49,7 @@ public class Client {
 	 * Select player panel
 	 */
 	public static void selectPlayer() {
+		UserLabel.selected = null;
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(Game.panel.getWidth() / 3, Game.panel.getHeight() / 3);
@@ -77,10 +78,12 @@ public class Client {
 				JLabel label = (JLabel) arg0.getSource();
 				switch (label.getText()) {
 				case "Cancel":
-					if (playerName == null && getName() == null) {
+					if (playerName == null) {
 						System.exit(0);
-					}else if(playerName == null && getName() != null){
-						getInfo(getName());
+					}else if(playerName != null){
+						Game.panel.remove(panel);
+						Game.panel.repaint();
+						getInfo(playerName);
 					}
 					break;
 				case "Accept":
