@@ -37,6 +37,9 @@ public class Game extends JFrame {
 	public static LabelButton multiPlayer;
 
 	@SuppressWarnings("javadoc")
+	public static LabelButton switchUser;
+
+	@SuppressWarnings("javadoc")
 	public static int cardWidth;
 
 	@SuppressWarnings("javadoc")
@@ -62,6 +65,7 @@ public class Game extends JFrame {
 		quit = new LabelButton("Quit", new MainListener());
 		singlePlayer = new LabelButton("Single Player", new MainListener());
 		multiPlayer = new LabelButton("Multiplayer", new MainListener());
+		switchUser = new LabelButton("Switch User", new MainListener());
 		cardWidth = frame.getWidth() / 8;
 		cardHeight = frame.getWidth() / 5;
 		panel = new JPanel();
@@ -72,6 +76,7 @@ public class Game extends JFrame {
 		singlePlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20), 0);
 		multiPlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20),
 				(frame.getWidth() / 20) + 10);
+		switchUser.setLocation(frame.getWidth() - (frame.getWidth() / 20), (frame.getWidth() / 20) + 10);
 		panel.add(quit);
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);

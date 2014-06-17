@@ -89,7 +89,6 @@ public class City extends JPanel {
 			nameLabel.setFont(new Font("TimesRoman", Font.PLAIN, i));
 			fm = this.getFontMetrics(nameLabel.getFont());
 			if (fm.getHeight() > nameLabel.getHeight()) {
-				System.out.println(i);
 				i--;
 			} else {
 				break;
