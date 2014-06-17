@@ -16,8 +16,8 @@ public class SinglePlayer {
 	 * Starts singleplayer
 	 */
 	public static void start() {
-		Game.panel.removeAll();
-		((City)City.cities[Client.getCity()]).show(Game.panel);
-		Game.panel.repaint();
+		Game.frame.remove(Game.panel);
+		Game.frame.repaint();
+		((City)City.cities[Client.getCity()]).show(Game.frame);
 	}
 }

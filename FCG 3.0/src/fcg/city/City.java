@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import fcg.Game;
@@ -29,6 +30,9 @@ public class City extends JPanel {
 	private String cityName;
 	
 	private LabelButton ret;
+	
+	private static City addedCity;
+	
 	/**
 	 * City constructor
 	 * 
@@ -69,27 +73,29 @@ public class City extends JPanel {
 		});
 		setSize(Game.frame.getSize());
 		setLocation(0, 0);
+		setBackground(Color.BLUE);
 		ret.setLocation(0, getHeight() - (getWidth() / 20));
 		cityName = name;
 		add(ret);
 	}
 
 	/**
-	 * Shows City on panel
+	 * Shows City on frame
 	 * 
-	 * @param panel
-	 *            Panel City is to be added to
+	 * @param frame
+	 *            Frame City is to be added to
 	 */
-	public void show(JPanel panel) {
-		panel.removeAll();
-		panel.add(this);
-		panel.repaint();
+	public void show(JFrame frame) {
+		addedCity = this;
+		frame.add(this);
+		frame.repaint();
 	}
 
 	/**
 	 * Goes back to main menu
 	 */
 	public static void close() {
+		Game.frame.remove(addedCity);
 		Game.main(new String[] {});
 	}
 	
@@ -110,17 +116,5 @@ public class City extends JPanel {
 			}
 		}
 		return ret;
-	}
-	
-	@Override
-	public void paint(Graphics g){
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		ret.repaint();
-		setSize(Game.frame.getSize());
-		g.setColor(Color.BLACK);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 32));
-		FontMetrics fm = g.getFontMetrics();
-		g.drawString(cityName + getID(), (getWidth() - fm.stringWidth(cityName)) / 2, 20);
 	}
 }

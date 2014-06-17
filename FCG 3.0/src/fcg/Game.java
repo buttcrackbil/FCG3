@@ -20,7 +20,7 @@ import fcg.panels.LabelButton;
 public class Game extends JFrame {
 
 	@SuppressWarnings("javadoc")
-	public static Game frame;
+	public static Game frame = new Game();
 
 	@SuppressWarnings("javadoc")
 	public static JPanel panel;
@@ -60,7 +60,6 @@ public class Game extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	public static void main(String[] args) {
-		frame = new Game();
 		quit = new LabelButton("Quit", new MainListener());
 		singlePlayer = new LabelButton("Single Player", new MainListener());
 		multiPlayer = new LabelButton("Multiplayer", new MainListener());
@@ -80,23 +79,6 @@ public class Game extends JFrame {
 		frame.add(panel);
 		if (Client.getName() == null)
 			Client.selectPlayer();
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		cardWidth = frame.getWidth() / 8;
-		cardHeight = frame.getWidth() / 5;
-		if (frame != null && panel != null) {
-			panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-			quit.setLocation(0, frame.getHeight() - (frame.getWidth() / 20));
-			singlePlayer.setLocation(
-					frame.getWidth() - (frame.getWidth() / 20), 0);
-			multiPlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20),
-					(frame.getWidth() / 20) + 10);
-			panel.repaint();
-			quit.repaint();
-			singlePlayer.repaint();
-			multiPlayer.repaint();
-		}
+		frame.repaint();
 	}
 }
