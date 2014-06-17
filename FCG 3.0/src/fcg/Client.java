@@ -77,10 +77,10 @@ public class Client {
 				JLabel label = (JLabel) arg0.getSource();
 				switch (label.getText()) {
 				case "Cancel":
-					if (playerName == null) {
+					if (playerName == null && getName() == null) {
 						System.exit(0);
-					}else {
-						
+					}else if(playerName == null && getName() != null){
+						getInfo(getName());
 					}
 					break;
 				case "Accept":

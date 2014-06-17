@@ -58,6 +58,7 @@ public class Game extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		addMouseListener(new FrameListener());
+		buttonSize = getSize().width / 20;
 	}
 
 	@SuppressWarnings("javadoc")
@@ -72,14 +73,15 @@ public class Game extends JFrame {
 		panel.setLayout(null);
 		panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		panel.setBackground(Color.BLUE);
-		quit.setLocation(0, frame.getHeight() - (frame.getWidth() / 20));
-		singlePlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20), 0);
-		multiPlayer.setLocation(frame.getWidth() - (frame.getWidth() / 20),
-				(frame.getWidth() / 20) + 10);
-		switchUser.setLocation(frame.getWidth() - (frame.getWidth() / 20), (frame.getWidth() / 20) + 10);
+		quit.setLocation(0, frame.getHeight() - buttonSize);
+		singlePlayer.setLocation(frame.getWidth() - buttonSize, 0);
+		multiPlayer.setLocation(frame.getWidth() - buttonSize,
+				buttonSize + 10);
+		switchUser.setLocation(frame.getWidth() - buttonSize, (buttonSize + 10) * 2);
 		panel.add(quit);
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);
+		panel.add(switchUser);
 		frame.add(panel);
 		if (Client.getName() == null)
 			Client.selectPlayer();

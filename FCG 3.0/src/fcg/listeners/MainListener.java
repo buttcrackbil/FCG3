@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.SwingUtilities;
 
+import fcg.Client;
 import fcg.Game;
 import fcg.panels.LabelButton;
 import fcg.sp.SinglePlayer;
@@ -28,6 +29,9 @@ public class MainListener implements MouseListener {
 				SinglePlayer.start();
 			}
 			if (button == Game.multiPlayer) {
+			}
+			if (button == Game.switchUser) {
+				Client.selectPlayer();
 			}
 		}
 	}
