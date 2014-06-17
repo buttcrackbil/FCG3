@@ -31,7 +31,7 @@ public class UserLabel extends JLabel {
 		super(name);
 		setOpaque(true);
 		setBackground(Color.RED);
-		setSize(Game.panel.getWidth() / 3, 50);
+		setSize((Game.panel.getWidth() / 3) - 10, 50);
 		addMouseListener(new MouseListener() {
 
 			@Override
