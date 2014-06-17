@@ -44,7 +44,7 @@ public class City extends JPanel {
 	 *            City's name
 	 */
 	public City(String name) {
-		ret = new LabelButton("Quit", new MouseListener() {
+		ret = new LabelButton("Quit SP", new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

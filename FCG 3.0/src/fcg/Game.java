@@ -65,8 +65,11 @@ public class Game extends JFrame {
 	public static void main(String[] args) {
 		quit = new LabelButton("Quit", new MainListener());
 		singlePlayer = new LabelButton("Single Player", new MainListener());
+		singlePlayer.resizeFont();
 		multiPlayer = new LabelButton("Multiplayer", new MainListener());
+		multiPlayer.resizeFont();
 		switchUser = new LabelButton("Switch User", new MainListener());
+		switchUser.resizeFont();
 		cardWidth = frame.getWidth() / 8;
 		cardHeight = frame.getWidth() / 5;
 		panel = new JPanel();
@@ -75,9 +78,9 @@ public class Game extends JFrame {
 		panel.setBackground(Color.BLUE);
 		quit.setLocation(0, frame.getHeight() - buttonSize);
 		singlePlayer.setLocation(frame.getWidth() - buttonSize, 0);
-		multiPlayer.setLocation(frame.getWidth() - buttonSize,
-				buttonSize + 10);
-		switchUser.setLocation(frame.getWidth() - buttonSize, (buttonSize + 10) * 2);
+		multiPlayer.setLocation(frame.getWidth() - buttonSize, buttonSize + 10);
+		switchUser.setLocation(frame.getWidth() - buttonSize,
+				(buttonSize + 10) * 2);
 		panel.add(quit);
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);

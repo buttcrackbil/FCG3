@@ -1,6 +1,7 @@
 package fcg.panels;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
@@ -36,6 +37,24 @@ public class LabelButton extends JLabel {
 		addMouseListener(listener);
 		setSize(size, size);
 		setOpaque(true);
+	}
+	
+	/**
+	 * Resizes font
+	 */
+	public void resizeFont(){
+		int i;
+		FontMetrics fm;
+		for (i = 50; i > 1;) {
+			setFont(new Font("TimesRoman", Font.PLAIN, i));
+			fm = getFontMetrics(getFont());
+			if (fm.stringWidth(string) > getWidth()) {
+				i -= 2;
+			} else {
+				break;
+			}
+		}
+		repaint();
 	}
 
 	@Override
