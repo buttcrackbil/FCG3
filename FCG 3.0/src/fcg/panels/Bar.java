@@ -10,7 +10,7 @@ import fcg.Game;
  * Creates bar that keeps track of a variable
  * 
  * @author Alex
- *
+ * 
  */
 public class Bar {
 
@@ -40,31 +40,29 @@ public class Bar {
 	 */
 	public static void drawBar(Graphics g, int x, int y, Color color1,
 			Color color2, int max, int colored) {
-		int i = 10;
-		while (max * i + 5 > Game.cardWidth) {
-			i--;
-		}
+		int width = Game.cardWidth - 10;
 		colors[0] = color1;
 		colors[1] = color2;
-		maxPoints = max * i;
-		coloredPoints = colored * i;
+		maxPoints = max * (width / max);
+		coloredPoints = colored * (width / colored);
 		g.setColor(colors[1]);
 		drawCircle(g, colors[1], x + 2, y, 5);
 		drawRect(g, colors[1], (5) + 2, y, maxPoints, 10);
 		drawCircle(g, colors[0], x + 2, y, 5);
 		drawRect(g, colors[0], (5) + 2, y, coloredPoints, 10);
-		String string = coloredPoints / i + "/" + maxPoints / i;
+		String string = coloredPoints / (width / colored) + "/" + maxPoints
+				/ (width / max);
 		FontMetrics fm = g.getFontMetrics();
 		g.setColor(Color.WHITE);
 		g.drawString(string, (maxPoints - fm.stringWidth(string)) / 2, y + 10);
 		g.setColor(Color.BLACK);
 	}
-	
+
 	private static void drawCircle(Graphics g, Color c, int x, int y, int radius) {
 		g.setColor(c);
 		g.fillOval(x, y, radius * 2, radius * 2);
 	}
-	
+
 	private static void drawRect(Graphics g, Color c, int x, int y, int i, int j) {
 		g.setColor(c);
 		g.fillRect(x, y, i, j);

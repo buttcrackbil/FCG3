@@ -3,6 +3,7 @@ package fcg.city;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.color.CMMException;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -26,8 +27,12 @@ public class City extends JPanel {
 	/**
 	 * All cities
 	 */
-	public static City[] cities = { new City("Debug City"),
+	public static City[] cities = {
+			new City("Debug City")
+					.addChoice(new LabelButton("Test Label", null)),
 			new City("Test City") };
+
+	private static City addedCity;
 
 	private String cityName;
 
@@ -35,15 +40,18 @@ public class City extends JPanel {
 
 	private JLabel nameLabel;
 
-	private static City addedCity;
+	private CityMenu cm;
 
 	/**
 	 * City constructor
 	 * 
 	 * @param name
 	 *            City's name
+	 * @param buttons
+	 *            Choices on city home screen
 	 */
 	public City(String name) {
+		cm = new CityMenu();
 		ret = new LabelButton("Quit SP", new MouseListener() {
 
 			@Override
@@ -100,6 +108,7 @@ public class City extends JPanel {
 		cityName = name;
 		add(ret);
 		add(nameLabel);
+		add(cm);
 	}
 
 	/**
@@ -139,5 +148,17 @@ public class City extends JPanel {
 			}
 		}
 		return ret;
+	}
+
+	/**
+	 * Adds a choice in the City home screen
+	 * 
+	 * @param buttons
+	 *            Choices to add to menu
+	 * @return Just to allow more compressed coding
+	 */
+	public City addChoice(LabelButton buttons) {
+		cm.addChoice(buttons);
+		return this;
 	}
 }

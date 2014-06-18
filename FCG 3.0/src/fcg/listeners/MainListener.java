@@ -22,16 +22,18 @@ public class MainListener implements MouseListener {
 	public void mouseClicked(MouseEvent arg0) {
 		if (SwingUtilities.isLeftMouseButton(arg0)) {
 			LabelButton button = (LabelButton) arg0.getSource();
-			if (button == Game.quit) {
-				System.exit(0);
-			}
-			if (button == Game.singlePlayer) {
-				SinglePlayer.start();
-			}
-			if (button == Game.multiPlayer) {
-			}
-			if (button == Game.switchUser) {
-				Client.selectPlayer();
+			if (button.isEnabled()) {
+				if (button == Game.quit) {
+					System.exit(0);
+				}
+				if (button == Game.singlePlayer) {
+					SinglePlayer.start();
+				}
+				if (button == Game.multiPlayer) {
+				}
+				if (button == Game.switchUser) {
+					Client.selectPlayer();
+				}
 			}
 		}
 	}

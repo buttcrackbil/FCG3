@@ -49,6 +49,10 @@ public class Client {
 	 * Select player panel
 	 */
 	public static void selectPlayer() {
+		Game.quit.setEnabled(false);
+		Game.singlePlayer.setEnabled(false);
+		Game.multiPlayer.setEnabled(false);
+		Game.switchUser.setEnabled(false);
 		UserLabel.selected = null;
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -80,7 +84,7 @@ public class Client {
 				case "Cancel":
 					if (playerName == null) {
 						System.exit(0);
-					}else if(playerName != null){
+					} else if (playerName != null) {
 						Game.panel.remove(panel);
 						Game.panel.repaint();
 						getInfo(playerName);
@@ -90,6 +94,10 @@ public class Client {
 					if (UserLabel.selected != null) {
 						Game.panel.remove(panel);
 						Game.panel.repaint();
+						Game.quit.setEnabled(true);
+						Game.singlePlayer.setEnabled(true);
+						Game.multiPlayer.setEnabled(true);
+						Game.switchUser.setEnabled(true);
 						getInfo(UserLabel.selected.getText());
 					}
 					break;
@@ -187,7 +195,6 @@ public class Client {
 	}
 
 	private static void deleteUser(String user) {
-		System.out.println("Deleting " + user);
 		File newDir = new File(dir + "/" + user);
 		String[] files = newDir.list();
 		for (int i = 0; i < files.length; i++) {
@@ -231,8 +238,7 @@ public class Client {
 			city = br.read();
 			br.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 

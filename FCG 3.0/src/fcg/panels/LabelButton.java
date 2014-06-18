@@ -22,7 +22,14 @@ public class LabelButton extends JLabel {
 	@SuppressWarnings("javadoc")
 	public String string;
 
+	/**
+	 * Font for all labels
+	 */
+	public static Font font;
+
 	private int size = Game.frame.getSize().width / 20;
+
+	private boolean enabled = true;
 
 	/**
 	 * Constructor
@@ -38,15 +45,15 @@ public class LabelButton extends JLabel {
 		setSize(size, size);
 		setOpaque(true);
 	}
-	
+
 	/**
 	 * Resizes font
 	 */
-	public void resizeFont(){
+	public void resizeFont() {
 		int i;
 		FontMetrics fm;
 		for (i = 50; i > 1;) {
-			setFont(new Font("TimesRoman", Font.PLAIN, i));
+			setFont(new Font(getFont().getFontName(), getFont().getStyle(), i));
 			fm = getFontMetrics(getFont());
 			if (fm.stringWidth(string) > getWidth()) {
 				i -= 2;
@@ -54,7 +61,16 @@ public class LabelButton extends JLabel {
 				break;
 			}
 		}
+		font = getFont();
 		repaint();
+	}
+
+	public void setEnabled(boolean b) {
+		enabled = b;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
 	}
 
 	@Override

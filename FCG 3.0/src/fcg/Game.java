@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import fcg.card.LivingCard;
 import fcg.listeners.FrameListener;
 import fcg.listeners.MainListener;
 import fcg.panels.LabelButton;
@@ -67,9 +68,9 @@ public class Game extends JFrame {
 		singlePlayer = new LabelButton("Single Player", new MainListener());
 		singlePlayer.resizeFont();
 		multiPlayer = new LabelButton("Multiplayer", new MainListener());
-		multiPlayer.resizeFont();
+		multiPlayer.setFont(LabelButton.font);
 		switchUser = new LabelButton("Switch User", new MainListener());
-		switchUser.resizeFont();
+		switchUser.setFont(LabelButton.font);
 		cardWidth = frame.getWidth() / 8;
 		cardHeight = frame.getWidth() / 5;
 		panel = new JPanel();
