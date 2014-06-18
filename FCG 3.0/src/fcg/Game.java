@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import fcg.card.LivingCard;
 import fcg.listeners.FrameListener;
 import fcg.listeners.MainListener;
 import fcg.panels.LabelButton;
