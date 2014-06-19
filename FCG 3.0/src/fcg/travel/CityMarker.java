@@ -26,8 +26,6 @@ public class CityMarker extends JLabel {
 	/**
 	 * A clickable circle that leads to a city
 	 * 
-	 * @param name
-	 *            Name on marker
 	 * @param x
 	 *            X pos of circle (center of circle)
 	 * @param y

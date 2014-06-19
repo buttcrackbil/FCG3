@@ -52,8 +52,6 @@ public class City extends JPanel {
 	 *            X location of city marker
 	 * @param y
 	 *            Y location of city marker
-	 * @param buttons
-	 *            Choices on city home screen
 	 */
 	public City(String name, int x, int y) {
 		cm = new CityMenu();
