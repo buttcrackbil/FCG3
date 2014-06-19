@@ -81,4 +81,10 @@ class CityMenu extends JPanel {
 		choiceAmount++;
 		repaint();
 	}
+
+	protected void removeChoice(LabelButton button) {
+		remove(button);
+		choiceAmount--;
+		repaint();
+	}
 }

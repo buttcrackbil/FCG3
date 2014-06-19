@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,7 @@ import javax.swing.SwingConstants;
 import fcg.Client;
 import fcg.Game;
 import fcg.panels.LabelButton;
+import fcg.quest.Task;
 import fcg.travel.CityMarker;
 
 /**
@@ -28,7 +30,7 @@ public class City extends JPanel {
 	/**
 	 * All cities
 	 */
-	public static City[] cities = { new City("Debug City", 1500, 1500),
+	public static City[] cities = { new City("Debug City", 500, 500),
 			new City("Test City", 100, 100) };
 
 	private static City addedCity;
@@ -42,6 +44,8 @@ public class City extends JPanel {
 	private CityMenu cm;
 
 	private CityMarker city;
+
+	private ArrayList<Task> tasks = new ArrayList<Task>();
 
 	/**
 	 * City constructor
@@ -126,6 +130,7 @@ public class City extends JPanel {
 		addedCity = this;
 		frame.add(this);
 		frame.repaint();
+		checkTasks();
 	}
 
 	/**
@@ -158,13 +163,23 @@ public class City extends JPanel {
 	/**
 	 * Adds a choice in the City home screen
 	 * 
-	 * @param buttons
+	 * @param button
 	 *            Choices to add to menu
 	 * @return Just to allow more compressed coding
 	 */
-	public City addChoice(LabelButton buttons) {
-		cm.addChoice(buttons);
+	public City addChoice(LabelButton button) {
+		cm.addChoice(button);
 		return this;
+	}
+
+	/**
+	 * Removes choice from city menu
+	 * 
+	 * @param button
+	 *            Choice to be removed
+	 */
+	public void removeChoice(LabelButton button) {
+		cm.removeChoice(button);
 	}
 
 	/**
@@ -174,5 +189,29 @@ public class City extends JPanel {
 	 */
 	public CityMarker getCityMarker() {
 		return city;
+	}
+
+	/**
+	 * Adds a task to the city (must visit city to complete task
+	 * 
+	 * @param task
+	 *            Task from a quest
+	 */
+	public void addTask(Task task) {
+		tasks.add(task);
+	}
+
+	/**
+	 * Checks to see if any tasks are completed upon going to the city
+	 */
+	public void checkTasks() {
+		for (int i = 0; i < tasks.size(); i++) {
+			Task task = tasks.get(i);
+			if (task.questStarted()) {
+				if (task.getQuest().taskID() == task.getTaskID()) {
+					task.setCompleted(true);
+				}
+			}
+		}
 	}
 }

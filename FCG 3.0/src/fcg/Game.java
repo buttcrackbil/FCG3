@@ -5,9 +5,12 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import fcg.city.City;
 import fcg.listeners.FrameListener;
 import fcg.listeners.MainListener;
 import fcg.panels.LabelButton;
+import fcg.quest.Quest;
+import fcg.quest.Task;
 
 /**
  * Main frame
@@ -44,6 +47,10 @@ public class Game extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	public static int cardHeight;
+
+	@SuppressWarnings("javadoc")
+	public static Quest questTest = new Quest(City.cities[0], "Quest Test",
+			new Task(City.cities[1]));
 
 	/**
 	 * Makes a full screen frame with no decoration

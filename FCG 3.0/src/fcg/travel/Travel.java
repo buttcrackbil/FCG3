@@ -26,7 +26,7 @@ public class Travel extends JPanel {
 	 * Constructor
 	 */
 	public Travel() {
-		setSize(Game.frame.getWidth() * 8, Game.frame.getHeight() * 8);
+		setSize(Game.frame.getWidth(), Game.frame.getHeight());
 		setLayout(null);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		addMouseMotionListener(new TravelListener());
@@ -77,7 +77,7 @@ public class Travel extends JPanel {
 		if (y > 0) {
 			y = 0;
 		} else if (y < Game.frame.getHeight() - getHeight()) {
-			y = Game.frame.getWidth() - getHeight();
+			y = Game.frame.getHeight() - getHeight();
 		}
 		setLocation(x, y);
 		repaint();
