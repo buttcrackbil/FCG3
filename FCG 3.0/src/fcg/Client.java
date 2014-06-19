@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fcg.city.City;
 import fcg.sp.UserLabel;
 import fcg.sp.Users;
 
@@ -252,7 +253,17 @@ public class Client {
 	}
 
 	/**
-	 * Gets city id that character is in
+	 * Sets the last city visited
+	 * 
+	 * @param c
+	 *            City that is to be kept as last visited city
+	 */
+	public static void setCity(City c) {
+		city = c.getID();
+	}
+
+	/**
+	 * Gets city id that the character is in
 	 * 
 	 * @return City id
 	 */

@@ -11,8 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fcg.Client;
 import fcg.Game;
 import fcg.panels.LabelButton;
+import fcg.travel.CityMarker;
 
 /**
  * A city
@@ -26,10 +28,8 @@ public class City extends JPanel {
 	/**
 	 * All cities
 	 */
-	public static City[] cities = {
-			new City("Debug City")
-					.addChoice(new LabelButton("Test Label", null)),
-			new City("Test City") };
+	public static City[] cities = { new City("Debug City", 1500, 1500),
+			new City("Test City", 100, 100) };
 
 	private static City addedCity;
 
@@ -41,16 +41,23 @@ public class City extends JPanel {
 
 	private CityMenu cm;
 
+	private CityMarker city;
+
 	/**
 	 * City constructor
 	 * 
 	 * @param name
 	 *            City's name
+	 * @param x
+	 *            X location of city marker
+	 * @param y
+	 *            Y location of city marker
 	 * @param buttons
 	 *            Choices on city home screen
 	 */
-	public City(String name) {
+	public City(String name, int x, int y) {
 		cm = new CityMenu();
+		city = new CityMarker(x, y, this);
 		ret = new LabelButton("Quit SP", new MouseListener() {
 
 			@Override
@@ -117,6 +124,7 @@ public class City extends JPanel {
 	 *            Frame City is to be added to
 	 */
 	public void show(JFrame frame) {
+		Client.setCity(this);
 		addedCity = this;
 		frame.add(this);
 		frame.repaint();
@@ -159,5 +167,14 @@ public class City extends JPanel {
 	public City addChoice(LabelButton buttons) {
 		cm.addChoice(buttons);
 		return this;
+	}
+
+	/**
+	 * Gets the city marker associated with this city
+	 * 
+	 * @return City marker
+	 */
+	public CityMarker getCityMarker() {
+		return city;
 	}
 }
