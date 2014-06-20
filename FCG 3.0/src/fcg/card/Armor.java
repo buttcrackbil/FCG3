@@ -8,57 +8,38 @@ import fcg.listeners.ClickedListener;
 import fcg.listeners.DragListener;
 
 /**
- * Creates a weapon card
+ * Creates an armor card
  * 
- * @author Alex
- * 
+ * @author A1C Ballou
+ *
  */
 @SuppressWarnings("serial")
-public class Weapon extends Card {
+public class Armor extends Card {
 
-	private int damage;
-
-	/**
-	 * Types of ammo
-	 * 
-	 * @author Alex
-	 * 
-	 */
-	public enum ammoTypes {
-		@SuppressWarnings("javadoc")
-		TWENTY_TWO, @SuppressWarnings("javadoc")
-		FIFTY, @SuppressWarnings("javadoc")
-		NINE, @SuppressWarnings("javadoc")
-		TEN
-	};
+	private int armor;
 
 	/**
-	 * @param name
-	 *            Name of weapon
-	 * @param par1
-	 *            Damage this weapon does
-	 * @param descriptionLines
-	 *            Description of card
+	 * @param name Name of card
+	 * @param par1 Defense of card
+	 * @param descriptionLines Description of card
 	 */
-	public Weapon(String name, int par1, String... descriptionLines) {
+	public Armor(String name, int par1, String... descriptionLines) {
 		super(name);
-		damage = par1;
+		armor = par1;
 		description = descriptionLines;
 	}
 
 	/**
-	 * @return Damage of card
+	 * @return Defense of card
 	 */
-	public int getDamage() {
-		return damage;
+	public int getDefense() {
+		return armor;
 	}
 
-	@Override
 	public void paint(Graphics g) {
 		int offset = 4;
 		addMouseMotionListener(new DragListener());
 		addMouseListener(new ClickedListener());
-		descriptionHeight = getHeight() / 2;
 		setSize(Game.cardWidth, Game.cardHeight);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -73,7 +54,7 @@ public class Weapon extends Card {
 		}
 		stringAttempt = 0;
 		lines = 0;
-		g.drawString("Damage: " + damage, offset, getHeight() - offset);
+		g.drawString("Defense: " + armor, offset, getHeight() - offset);
 	}
 
 }

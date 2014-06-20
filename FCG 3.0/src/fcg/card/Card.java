@@ -23,6 +23,14 @@ public class Card extends JLabel {
 
 	private boolean draggable = true;
 
+	protected String[] description;
+
+	protected int descriptionHeight;
+
+	protected int lines;
+
+	protected int stringAttempt = 0;
+
 	/**
 	 * Constructor
 	 * 
@@ -39,15 +47,16 @@ public class Card extends JLabel {
 	}
 
 	public void paint(Graphics g) {
+		int offset = 4;
 		addMouseMotionListener(new DragListener());
 		addMouseListener(new ClickedListener());
 		setSize(Game.cardWidth, Game.cardHeight);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
-		g.fillRect(0, 0, getWidth(), getHeight());
+		g.fillRect(2, 2, getWidth() - offset, getHeight() - offset);
 		g.setColor(Color.BLACK);
-		g.drawString(name, 0, 10);
+		g.drawString(name, offset, 10 + offset);
 	}
 
 	/**
@@ -79,7 +88,7 @@ public class Card extends JLabel {
 	 * @param par1
 	 *            String to be drawn
 	 */
-	public static void drawLine(LivingCard lv, Graphics g, String par1) {
+	public static void drawLine(Card lv, Graphics g, String par1) {
 		FontMetrics fm = g.getFontMetrics();
 		if (fm.stringWidth(par1) > lv.getWidth()) {
 			System.out.println("Description line #" + lv.stringAttempt

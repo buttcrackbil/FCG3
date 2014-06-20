@@ -23,14 +23,6 @@ public class LivingCard extends Card {
 
 	private int attack;
 
-	private String[] description;
-
-	int descriptionHeight;
-
-	int lines = 0;
-
-	int stringAttempt = 1;
-
 	/**
 	 * Creature card
 	 * 
@@ -46,7 +38,7 @@ public class LivingCard extends Card {
 	 *            The description must be broken into parts to fit on card
 	 */
 	public LivingCard(String par1, int par2, int par3, String picture,
-			String[] descriptionLines) {
+			String... descriptionLines) {
 		super(par1);
 		health = par2;
 		attack = par3;
@@ -102,25 +94,26 @@ public class LivingCard extends Card {
 	}
 
 	public void paint(Graphics g) {
+		int offset = 4;
+		addMouseMotionListener(new DragListener());
+		addMouseListener(new ClickedListener());
 		descriptionHeight = getHeight() / 2;
 		setSize(Game.cardWidth, Game.cardHeight);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
-		g.fillRect(2, 2, getWidth() - 4, getHeight() - 4);
+		g.fillRect(2, 2, getWidth() - offset, getHeight() - offset);
 		g.setColor(Color.BLACK);
 		Bar.drawBar(g, 0, getHeight() - 30, Color.BLUE, Color.RED, health,
 				health - damaged);
-		g.drawString(getName(), 4, 12);
+		g.drawString(getName(), offset, 10 + offset);
 		for (int i = 0; i < description.length; i++) {
 			if (description[i] != null) {
 				drawLine(this, g, description[i]);
 			}
 		}
-		addMouseMotionListener(new DragListener());
-		addMouseListener(new ClickedListener());
 		stringAttempt = 0;
 		lines = 0;
-		g.drawString("Attack: " + attack, 4, getHeight() - 4);
+		g.drawString("Attack: " + attack, offset, getHeight() - offset);
 	}
 }
