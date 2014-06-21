@@ -50,7 +50,7 @@ public class Game extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	public static Quest questTest = new Quest(City.cities[0], "Quest Test",
-			new Task(City.cities[1]));
+			new Task("Travel to Test City", City.cities[1]));
 
 	/**
 	 * Makes a full screen frame with no decoration
