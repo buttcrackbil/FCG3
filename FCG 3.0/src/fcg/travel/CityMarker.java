@@ -36,7 +36,7 @@ public class CityMarker extends JLabel {
 	public CityMarker(int x, int y, City home) {
 		city = home;
 		setFont(LabelButton.font);
-		setSize(Game.buttonSize / 2, Game.buttonSize / 2);
+		setSize(Game.buttonSize / 4, Game.buttonSize / 4);
 		setLocation(x - getWidth(), y - getHeight());
 		setVerticalAlignment(SwingConstants.BOTTOM);
 		setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,7 +45,7 @@ public class CityMarker extends JLabel {
 	}
 
 	/**
-	 * Gets the connectd city
+	 * Gets the connected city
 	 * 
 	 * @return The city this label is connected to
 	 */

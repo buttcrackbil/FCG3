@@ -22,9 +22,9 @@ import fcg.listeners.TravelListener;
 @SuppressWarnings("serial")
 public class Travel extends JPanel {
 
-	/**
-	 * Constructor
-	 */
+	private static int days;
+
+	@SuppressWarnings("javadoc")
 	public Travel() {
 		setSize(Game.frame.getWidth(), Game.frame.getHeight());
 		setLayout(null);
@@ -66,9 +66,9 @@ public class Travel extends JPanel {
 			add(City.cities[i].getCityMarker());
 		}
 		int x = (Game.frame.getWidth() / 2)
-				- City.cities[Client.getCity()].getCityMarker().getLocation().x;
+				- Client.getCity().getCityMarker().getLocation().x;
 		int y = (Game.frame.getHeight() / 2)
-				- City.cities[Client.getCity()].getCityMarker().getLocation().y;
+				- Client.getCity().getCityMarker().getLocation().y;
 		if (x > 0) {
 			x = 0;
 		} else if (x < Game.frame.getWidth() - getWidth()) {
@@ -81,5 +81,39 @@ public class Travel extends JPanel {
 		}
 		setLocation(x, y);
 		repaint();
+	}
+
+	/**
+	 * Brings up the move panel
+	 * 
+	 * @param city
+	 *            City the player is traveling to
+	 */
+	public static void travel(City city) {
+		getDays(city);
+		Game.frame.add(new Move(days, city));
+		Game.frame.repaint();
+	}
+
+	private static void getDays(City city) {
+		days = 0;
+		Point preCity = Client.getCity().getCityMarker().getLocation();
+		Point postCity = city.getCityMarker().getLocation();
+		int xDiff = Math.abs(preCity.x - postCity.x);
+		int yDiff = Math.abs(preCity.y - postCity.y);
+		while (xDiff >= (Game.frame.getWidth() / 16)) {
+			days++;
+			xDiff -= (Game.frame.getWidth() / 16);
+		}
+		if (xDiff > 0) {
+			days++;
+		}
+		while (yDiff >= (Game.frame.getHeight() / 9)) {
+			yDiff -= (Game.frame.getHeight() / 9);
+			days++;
+		}
+		if (yDiff > 0) {
+			days++;
+		}
 	}
 }

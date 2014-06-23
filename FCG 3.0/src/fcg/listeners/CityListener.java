@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
+import fcg.Client;
 import fcg.Game;
 import fcg.city.City;
 import fcg.travel.CityMarker;
@@ -25,7 +26,11 @@ public class CityListener implements MouseListener {
 		CityMarker city = (CityMarker) arg0.getSource();
 		Travel travel = (Travel) city.getParent();
 		Game.frame.remove(travel);
-		((City) City.cities[((City) city.getCity()).getID()]).show(Game.frame);
+		if (city.getCity() == Client.getCity()) {
+			Client.getCity().show(Game.frame);
+		} else if (city.getCity() != Client.getCity()) {
+			Travel.travel(City.cities[city.getCity().getID()]);
+		}
 	}
 
 	@Override

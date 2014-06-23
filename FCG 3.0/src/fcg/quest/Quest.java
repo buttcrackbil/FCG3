@@ -139,8 +139,8 @@ public class Quest {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				City.cities[Client.getCity()].remove(messageLabel);
-				City.cities[Client.getCity()].repaint();
+				Client.getCity().remove(messageLabel);
+				Client.getCity().repaint();
 			}
 
 			@Override

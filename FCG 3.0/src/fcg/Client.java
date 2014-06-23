@@ -267,7 +267,7 @@ public class Client {
 	 * 
 	 * @return City id
 	 */
-	public static int getCity() {
-		return city;
+	public static City getCity() {
+		return City.cities[city];
 	}
 }

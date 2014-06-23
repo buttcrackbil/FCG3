@@ -104,7 +104,6 @@ public class Task {
 	}
 
 	private void showMessage() {
-		System.out.println("Showing tasks message");
 		messageLabel.setText("<html><u>" + name + "</u> was completed."
 				+ " (Click to dismiss)" + "</html>");
 		messageLabel.setOpaque(true);

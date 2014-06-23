@@ -18,6 +18,6 @@ public class SinglePlayer {
 	public static void start() {
 		Game.frame.remove(Game.panel);
 		Game.frame.repaint();
-		((City)City.cities[Client.getCity()]).show(Game.frame);
+		Client.getCity().show(Game.frame);
 	}
 }
