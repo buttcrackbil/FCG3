@@ -36,8 +36,6 @@ public class Task {
 	 *            Name of the task
 	 * @param city
 	 *            City this task is in
-	 * @param message
-	 *            Message shown when task is completed
 	 */
 	public Task(String name, City city) {
 		this.city = city;
