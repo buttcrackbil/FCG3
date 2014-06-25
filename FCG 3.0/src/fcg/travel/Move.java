@@ -46,7 +46,7 @@ public class Move extends JPanel {
 				}
 			}
 		});
-		bar = new TravelBar(days, 0, this);
+		bar = new TravelBar(days, this);
 		add(bar);
 		add(go);
 	}

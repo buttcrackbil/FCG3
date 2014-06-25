@@ -30,7 +30,7 @@ public class City extends JPanel {
 	/**
 	 * All cities
 	 */
-	public static City[] cities = { new City("Debug City", 500, 500),
+	public static City[] cities = { new City("Debug City", 250, 250),
 			new City("Test City", 100, 100) };
 
 	private static City addedCity;

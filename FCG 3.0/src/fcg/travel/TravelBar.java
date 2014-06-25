@@ -8,17 +8,29 @@ import javax.swing.JPanel;
 import fcg.Game;
 import fcg.city.City;
 
+/**
+ * Bar that is on top of the moving panel
+ * 
+ * @author Alex
+ * 
+ */
+@SuppressWarnings("serial")
 public class TravelBar extends JPanel {
 
 	private int days;
 
-	private int spentDays;
+	private int spentDays = 0;
 
-	public TravelBar(int days, int spentDays, JPanel panel) {
-		setSize(panel.getWidth(), panel.getWidth() / 15);
+	/**
+	 * @param days
+	 *            Days that need to be gone through to get to the next city
+	 * @param panel
+	 *            Panel that bar is added to
+	 */
+	public TravelBar(int days, JPanel panel) {
+		setSize(panel.getWidth(), panel.getWidth() / 18);
 		setLocation(0, 0);
 		this.days = days;
-		this.spentDays = spentDays;
 	}
 
 	public void paint(Graphics g) {

@@ -2,7 +2,6 @@ package fcg.sp;
 
 import fcg.Client;
 import fcg.Game;
-import fcg.city.City;
 
 /**
  * Place where all singleplayer things are started
