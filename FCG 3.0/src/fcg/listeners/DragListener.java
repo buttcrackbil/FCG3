@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import fcg.Game;
 import fcg.card.Card;
+import fcg.city.City;
 
 /**
  * Allows card to be dragged
@@ -57,7 +58,8 @@ public class DragListener implements MouseMotionListener {
 					card.setLocation(x, y);
 
 					// Puts the card on top of all other cards
-					Game.panel.setComponentZOrder(card, nonCards(Game.panel));
+					card.getParent().setComponentZOrder(card,
+							nonCards(((City) card.getParent())));
 				}
 				lastPoint.x = arg0.getLocationOnScreen().x;
 				lastPoint.y = arg0.getLocationOnScreen().y;

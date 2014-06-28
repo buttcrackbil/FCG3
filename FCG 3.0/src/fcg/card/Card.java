@@ -38,7 +38,7 @@ public class Card extends JLabel {
 	 *            Name of card
 	 */
 	public Card(String string) {
-		setSize(Game.frame.getWidth() / 10, Game.frame.getHeight() / 3);
+		setSize(Game.cardWidth, Game.cardHeight);
 		name = string;
 	}
 

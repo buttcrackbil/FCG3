@@ -3,12 +3,13 @@ package fcg;
 import java.awt.Color;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+import fcg.card.LivingCard;
 import fcg.city.City;
 import fcg.listeners.FrameListener;
 import fcg.listeners.MainListener;
 import fcg.panels.LabelButton;
+import fcg.panels.MainPanel;
 import fcg.quest.Quest;
 import fcg.quest.Task;
 
@@ -25,7 +26,7 @@ public class Game extends JFrame {
 	public static Game frame = new Game();
 
 	@SuppressWarnings("javadoc")
-	public static JPanel panel;
+	public static MainPanel panel;
 
 	@SuppressWarnings("javadoc")
 	public static int buttonSize;
@@ -53,6 +54,9 @@ public class Game extends JFrame {
 			new Task("Travel to Test City", City.cities[1]), new Task(
 					"Travel back to Debug City", City.cities[0]));
 
+	private static LivingCard card = new LivingCard("Debug Card", 20, 10,
+			"picture.png", "Description");
+
 	/**
 	 * Makes a full screen frame with no decoration
 	 */
@@ -65,6 +69,8 @@ public class Game extends JFrame {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		cardWidth = getWidth() / 8;
+		cardHeight = getWidth() / 5;
 		addMouseListener(new FrameListener());
 		buttonSize = getSize().width / 20;
 	}
@@ -78,9 +84,7 @@ public class Game extends JFrame {
 		multiPlayer.setFont(LabelButton.font);
 		switchUser = new LabelButton("Switch User", new MainListener());
 		switchUser.setFont(LabelButton.font);
-		cardWidth = frame.getWidth() / 8;
-		cardHeight = frame.getWidth() / 5;
-		panel = new JPanel();
+		panel = new MainPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		panel.setBackground(Color.BLUE);
@@ -93,9 +97,9 @@ public class Game extends JFrame {
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);
 		panel.add(switchUser);
+		City.cities[0].add(card);
 		frame.add(panel);
 		if (Client.getName() == null)
 			Client.selectPlayer();
-		frame.repaint();
 	}
 }

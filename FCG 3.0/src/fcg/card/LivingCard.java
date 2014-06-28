@@ -2,12 +2,8 @@ package fcg.card;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import fcg.Game;
+import fcg.images.Picture;
 import fcg.listeners.ClickedListener;
 import fcg.listeners.DragListener;
 import fcg.panels.Bar;
@@ -50,6 +46,9 @@ public class LivingCard extends Card {
 		attack = par3;
 		description = descriptionLines;
 		picString = picture;
+		addMouseMotionListener(new DragListener());
+		addMouseListener(new ClickedListener());
+		descriptionHeight = getHeight() / 2;
 	}
 
 	/**
@@ -100,27 +99,11 @@ public class LivingCard extends Card {
 		repaint();
 	}
 
-	private void addPicture(Graphics g) {
-		try {
-			BufferedImage myPicture = ImageIO.read(this.getClass()
-					.getClassLoader().getResourceAsStream(picString));
-			g.drawImage(myPicture, 2, 2, getWidth() - 4, getHeight() - 4, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void paint(Graphics g) {
 		int offset = 4;
-		addMouseMotionListener(new DragListener());
-		addMouseListener(new ClickedListener());
-		descriptionHeight = getHeight() / 2;
-		setSize(Game.cardWidth, Game.cardHeight);
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(Color.WHITE);
-		g.fillRect(2, 2, getWidth() - 4, getHeight() - 4);
-		addPicture(g);
+		Picture.addPicture(g, picString, this);
 		g.setColor(Color.BLACK);
 		Bar.drawBar(g, 0, getHeight() - 30, Color.BLUE, Color.RED, health,
 				health - damaged);
@@ -130,6 +113,7 @@ public class LivingCard extends Card {
 				drawLine(this, g, description[i]);
 			}
 		}
+		g.setColor(Color.GRAY);
 		stringAttempt = 0;
 		lines = 0;
 		g.drawString("Attack: " + attack, offset, getHeight() - offset);
