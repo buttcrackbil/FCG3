@@ -24,13 +24,15 @@ public class Picture {
 	 *            Component to be painted to
 	 */
 	public static void addPicture(Graphics g, String picString, Component comp) {
-		try {
-			BufferedImage myPicture = ImageIO.read(comp.getClass().getResource(
-					"/fcg/images/" + picString));
-			g.drawImage(myPicture, 2, 2, comp.getWidth() - 4,
-					comp.getHeight() - 4, null);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (picString != null) {
+			try {
+				BufferedImage myPicture = ImageIO.read(comp.getClass()
+						.getResource("/fcg/images/" + picString));
+				g.drawImage(myPicture, 2, 2, comp.getWidth() - 4,
+						comp.getHeight() - 4, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -44,13 +46,15 @@ public class Picture {
 	 */
 	public static void addBackground(Graphics g, String picString,
 			Component comp) {
-		try {
-			BufferedImage myPicture = ImageIO.read(comp.getClass().getResource(
-					"/fcg/images/" + picString));
-			g.drawImage(myPicture, 0, 0, comp.getWidth(), comp.getHeight(),
-					null);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (picString != null) {
+			try {
+				BufferedImage myPicture = ImageIO.read(comp.getClass()
+						.getResource("/fcg/images/" + picString));
+				g.drawImage(myPicture, 0, 0, comp.getWidth(), comp.getHeight(),
+						null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

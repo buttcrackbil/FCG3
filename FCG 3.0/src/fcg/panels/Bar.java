@@ -40,7 +40,7 @@ public class Bar {
 	 */
 	public static void drawBar(Graphics g, int x, int y, Color color1,
 			Color color2, int max, int colored) {
-		int width = Game.cardWidth - 10;
+		int width = Game.cardWidth - 14;
 		colors[0] = color1;
 		colors[1] = color2;
 		maxPoints = max * (width / max);

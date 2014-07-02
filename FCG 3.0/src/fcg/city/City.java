@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import fcg.Client;
 import fcg.Game;
+import fcg.card.Card;
 import fcg.panels.LabelButton;
 import fcg.quest.Task;
 import fcg.travel.CityMarker;
@@ -138,7 +139,9 @@ public class City extends JPanel {
 	 */
 	public static void close() {
 		Game.frame.remove(addedCity);
+		Card.list.clear();
 		Game.main(new String[] {});
+		Game.frame.repaint();
 	}
 
 	public String getName() {

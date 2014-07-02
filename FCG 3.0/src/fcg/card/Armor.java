@@ -11,7 +11,7 @@ import fcg.listeners.DragListener;
  * Creates an armor card
  * 
  * @author A1C Ballou
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class Armor extends Card {
@@ -19,12 +19,18 @@ public class Armor extends Card {
 	private int armor;
 
 	/**
-	 * @param name Name of card
-	 * @param par1 Defense of card
-	 * @param descriptionLines Description of card
+	 * @param name
+	 *            Name of card
+	 * @param register
+	 *            True to register card, false if making card copy
+	 * @param par1
+	 *            Defense of card
+	 * @param descriptionLines
+	 *            Description of card
 	 */
-	public Armor(String name, int par1, String... descriptionLines) {
-		super(name);
+	public Armor(String name, boolean register, int par1,
+			String... descriptionLines) {
+		super(name, register);
 		armor = par1;
 		description = descriptionLines;
 	}

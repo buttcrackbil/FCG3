@@ -35,13 +35,16 @@ public class Weapon extends Card {
 	/**
 	 * @param name
 	 *            Name of weapon
+	 * @param register
+	 *            True to register card, false if making card copy
 	 * @param par1
 	 *            Damage this weapon does
 	 * @param descriptionLines
 	 *            Description of card
 	 */
-	public Weapon(String name, int par1, String... descriptionLines) {
-		super(name);
+	public Weapon(String name, boolean register, int par1,
+			String... descriptionLines) {
+		super(name, register);
 		damage = par1;
 		description = descriptionLines;
 	}

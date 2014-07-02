@@ -3,10 +3,12 @@ package fcg.card;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 import fcg.Game;
+import fcg.content.Content;
 import fcg.listeners.ClickedListener;
 import fcg.listeners.DragListener;
 
@@ -18,6 +20,13 @@ import fcg.listeners.DragListener;
  */
 @SuppressWarnings("serial")
 public class Card extends JLabel {
+
+	// Cards
+
+	static LivingCard RIFLEMAN;
+	static LivingCard SOLDIER;
+
+	// End of cards
 
 	private String name;
 
@@ -32,14 +41,26 @@ public class Card extends JLabel {
 	protected int stringAttempt = 0;
 
 	/**
+	 * All cards
+	 */
+	public static ArrayList<Card> list = new ArrayList<Card>();
+
+	/**
 	 * Constructor
 	 * 
 	 * @param string
 	 *            Name of card
+	 * @param register
+	 *            True to register card, false if making card copy
 	 */
-	public Card(String string) {
+	public Card(String string, boolean register) {
 		setSize(Game.cardWidth, Game.cardHeight);
 		name = string;
+		if (register) {
+			System.out.println("Setting " + string + " to ID "
+					+ (list.size() + 1));
+			list.add(this);
+		}
 	}
 
 	public String getName() {
@@ -79,6 +100,27 @@ public class Card extends JLabel {
 	}
 
 	/**
+	 * @return ID of card (-1 if not registered)
+	 */
+	public int getID() {
+		int i = -1;
+		for (int j = 0; j < list.size(); j++) {
+			if (list.get(j) == this) {
+				i = j;
+				break;
+			}
+		}
+		return i;
+	}
+
+	/**
+	 * @return Copy of card
+	 */
+	public Card copy() {
+		return new Card(name, false);
+	}
+
+	/**
 	 * Draws description and makes sure it all fits on screen
 	 * 
 	 * @param lv
@@ -99,5 +141,16 @@ public class Card extends JLabel {
 			lv.lines++;
 			lv.stringAttempt++;
 		}
+	}
+
+	/**
+	 * Creates cards
+	 */
+	@Content
+	public static void createCards() {
+		SOLDIER = new LivingCard("Soldier", true, 5, 3, "picture.png",
+				"Basic soldier");
+		RIFLEMAN = new LivingCard("Rifleman", true, 5, 5, "picture.png",
+				"Basic rifleman");
 	}
 }

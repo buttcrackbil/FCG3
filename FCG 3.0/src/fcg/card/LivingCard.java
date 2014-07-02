@@ -30,6 +30,8 @@ public class LivingCard extends Card {
 	 * 
 	 * @param par1
 	 *            Name of card
+	 * @param register
+	 *            True to register card, false if making card copy
 	 * @param par2
 	 *            Health of card
 	 * @param par3
@@ -39,9 +41,9 @@ public class LivingCard extends Card {
 	 * @param descriptionLines
 	 *            The description must be broken into parts to fit on card
 	 */
-	public LivingCard(String par1, int par2, int par3, String picture,
-			String... descriptionLines) {
-		super(par1);
+	public LivingCard(String par1, boolean register, int par2, int par3,
+			String picture, String... descriptionLines) {
+		super(par1, register);
 		health = par2;
 		attack = par3;
 		description = descriptionLines;
@@ -97,6 +99,11 @@ public class LivingCard extends Card {
 			damaged -= i;
 		}
 		repaint();
+	}
+
+	public LivingCard copy() {
+		return new LivingCard(getName(), false, health, attack, picString,
+				description);
 	}
 
 	public void paint(Graphics g) {
