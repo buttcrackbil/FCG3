@@ -19,6 +19,6 @@ public class MainPanel extends JPanel {
 		for (int i = 0; i < this.getComponents().length; i++) {
 			this.getComponents()[i].repaint();
 		}
-		Picture.addBackground(g, "picture.png", this);
+		Picture.addBackground(g, "/fcg/images/picture.png", this);
 	}
 }

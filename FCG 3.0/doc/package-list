@@ -1,6 +1,9 @@
 fcg
 fcg.card
+fcg.card.deck
 fcg.city
+fcg.city.debugcity
+fcg.content
 fcg.images
 fcg.listeners
 fcg.panels

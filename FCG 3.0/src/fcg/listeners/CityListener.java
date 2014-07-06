@@ -1,9 +1,12 @@
 package fcg.listeners;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import fcg.Client;
 import fcg.Game;
@@ -38,8 +41,14 @@ public class CityListener implements MouseListener {
 		CityMarker city = (CityMarker) arg0.getSource();
 		Travel travel = (Travel) city.getParent();
 		name = new JLabel(city.getCity().getName());
-		name.setSize(Game.buttonSize, 20);
-		name.setLocation(city.getLocation().x - 10, city.getLocation().y - 20);
+		Font font = name.getFont();
+		FontMetrics fm = name.getFontMetrics(font);
+		int fw = fm.stringWidth(city.getCity().getName());
+		name.setSize(fw, 20);
+		name.setHorizontalAlignment(SwingConstants.CENTER);
+		int xDiff = Math.abs((name.getWidth() - city.getWidth()) / 2);
+		name.setLocation(city.getLocation().x - xDiff,
+				city.getLocation().y - 20);
 		travel.add(name);
 		travel.repaint();
 	}

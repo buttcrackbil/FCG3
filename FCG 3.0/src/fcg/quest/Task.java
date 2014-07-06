@@ -40,7 +40,6 @@ public class Task {
 	public Task(String name, City city) {
 		this.city = city;
 		this.name = name;
-		city.addTask(this);
 	}
 
 	// [WIP]

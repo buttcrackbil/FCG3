@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 import fcg.Client;
 import fcg.Game;
 import fcg.city.City;
-import fcg.panels.LabelButton;
 
 /**
  * Self-explanatory
@@ -24,8 +23,6 @@ import fcg.panels.LabelButton;
 public class Quest {
 
 	private City city;
-
-	private LabelButton button;
 
 	protected boolean started;
 
@@ -46,8 +43,6 @@ public class Quest {
 	 *            Parts of the quest
 	 */
 	public Quest(City par1, String name, Task... tasks) {
-		button = new LabelButton(name, new QuestListener());
-		par1.addChoice(button);
 		city = par1;
 		for (int i = 0; i < tasks.length; i++) {
 			tasks[i].setQuest(this);
@@ -88,7 +83,6 @@ public class Quest {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				getCity().removeChoice(button);
 				city.remove(label);
 				city.repaint();
 				started = true;

@@ -4,14 +4,10 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-import fcg.card.Card;
-import fcg.city.City;
 import fcg.listeners.FrameListener;
 import fcg.listeners.MainListener;
 import fcg.panels.LabelButton;
 import fcg.panels.MainPanel;
-import fcg.quest.Quest;
-import fcg.quest.Task;
 
 /**
  * Main frame
@@ -48,11 +44,6 @@ public class Game extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	public static int cardHeight;
-
-	@SuppressWarnings("javadoc")
-	public static Quest questTest = new Quest(City.cities[0], "Quest Test",
-			new Task("Travel to Test City", City.cities[1]), new Task(
-					"Travel back to Debug City", City.cities[0]));
 
 	/**
 	 * Makes a full screen frame with no decoration
@@ -94,9 +85,6 @@ public class Game extends JFrame {
 		panel.add(singlePlayer);
 		panel.add(multiPlayer);
 		panel.add(switchUser);
-		for (int i = 0; i < Card.list.size(); i++) {
-			City.cities[0].add(Card.list.get(i));
-		}
 		frame.add(panel);
 		if (Client.getName() == null)
 			Client.selectPlayer();

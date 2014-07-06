@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,8 +14,8 @@ import javax.swing.SwingConstants;
 import fcg.Client;
 import fcg.Game;
 import fcg.card.Card;
+import fcg.city.debugcity.DebugCity;
 import fcg.panels.LabelButton;
-import fcg.quest.Task;
 import fcg.travel.CityMarker;
 
 /**
@@ -31,8 +30,7 @@ public class City extends JPanel {
 	/**
 	 * All cities
 	 */
-	public static City[] cities = { new City("Debug City", 250, 250),
-			new City("Test City", 100, 100) };
+	public static City[] cities = { new DebugCity() };
 
 	private static City addedCity;
 
@@ -42,11 +40,9 @@ public class City extends JPanel {
 
 	private JLabel nameLabel;
 
-	private CityMenu cm;
-
 	private CityMarker city;
 
-	private ArrayList<Task> tasks = new ArrayList<Task>();
+	private Menu menu;
 
 	/**
 	 * City constructor
@@ -59,7 +55,6 @@ public class City extends JPanel {
 	 *            Y location of city marker
 	 */
 	public City(String name, int x, int y) {
-		cm = new CityMenu();
 		city = new CityMarker(x, y, this);
 		ret = new LabelButton("Quit SP", new MouseListener() {
 
@@ -117,7 +112,8 @@ public class City extends JPanel {
 		cityName = name;
 		add(ret);
 		add(nameLabel);
-		add(cm);
+		menu = cityMenu();
+		add(menu);
 	}
 
 	/**
@@ -131,7 +127,6 @@ public class City extends JPanel {
 		addedCity = this;
 		frame.add(this);
 		frame.repaint();
-		checkTasks();
 	}
 
 	/**
@@ -164,28 +159,6 @@ public class City extends JPanel {
 	}
 
 	/**
-	 * Adds a choice in the City home screen
-	 * 
-	 * @param button
-	 *            Choices to add to menu
-	 * @return Just to allow more compressed coding
-	 */
-	public City addChoice(LabelButton button) {
-		cm.addChoice(button);
-		return this;
-	}
-
-	/**
-	 * Removes choice from city menu
-	 * 
-	 * @param button
-	 *            Choice to be removed
-	 */
-	public void removeChoice(LabelButton button) {
-		cm.removeChoice(button);
-	}
-
-	/**
 	 * Gets the city marker associated with this city
 	 * 
 	 * @return City marker
@@ -194,27 +167,7 @@ public class City extends JPanel {
 		return city;
 	}
 
-	/**
-	 * Adds a task to the city (must visit city to complete task
-	 * 
-	 * @param task
-	 *            Task from a quest
-	 */
-	public void addTask(Task task) {
-		tasks.add(task);
-	}
-
-	/**
-	 * Checks to see if any tasks are completed upon going to the city
-	 */
-	public void checkTasks() {
-		for (int i = 0; i < tasks.size(); i++) {
-			Task task = tasks.get(i);
-			if (task.questStarted()) {
-				if (task.getQuest().taskID() == task.getTaskID()) {
-					task.setCompleted(true);
-				}
-			}
-		}
+	protected Menu cityMenu() {
+		return null;
 	}
 }

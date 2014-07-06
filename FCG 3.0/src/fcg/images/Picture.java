@@ -27,7 +27,7 @@ public class Picture {
 		if (picString != null) {
 			try {
 				BufferedImage myPicture = ImageIO.read(comp.getClass()
-						.getResource("/fcg/images/" + picString));
+						.getResource(picString));
 				g.drawImage(myPicture, 2, 2, comp.getWidth() - 4,
 						comp.getHeight() - 4, null);
 			} catch (IOException e) {
@@ -49,7 +49,7 @@ public class Picture {
 		if (picString != null) {
 			try {
 				BufferedImage myPicture = ImageIO.read(comp.getClass()
-						.getResource("/fcg/images/" + picString));
+						.getResource(picString));
 				g.drawImage(myPicture, 0, 0, comp.getWidth(), comp.getHeight(),
 						null);
 			} catch (IOException e) {
