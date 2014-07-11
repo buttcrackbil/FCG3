@@ -62,8 +62,8 @@ public class Travel extends JPanel {
 				TravelListener.lastPoint = new Point();
 			}
 		});
-		for (int i = 0; i < City.cities.length; i++) {
-			add(City.cities[i].getCityMarker());
+		for (int i = 0; i < City.cities.size(); i++) {
+			add(City.cities.get(i).getCityMarker());
 		}
 		int x = (Game.frame.getWidth() / 2)
 				- Client.getCity().getCityMarker().getLocation().x;

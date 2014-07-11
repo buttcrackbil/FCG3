@@ -32,7 +32,7 @@ public class CityListener implements MouseListener {
 		if (city.getCity() == Client.getCity()) {
 			Client.getCity().show(Game.frame);
 		} else if (city.getCity() != Client.getCity()) {
-			Travel.travel(City.cities[city.getCity().getID()]);
+			Travel.travel(City.cities.get(city.getCity().getID()));
 		}
 	}
 

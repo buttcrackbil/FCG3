@@ -5,6 +5,11 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +19,6 @@ import javax.swing.SwingConstants;
 import fcg.Client;
 import fcg.Game;
 import fcg.card.Card;
-import fcg.city.debugcity.DebugCity;
 import fcg.panels.LabelButton;
 import fcg.travel.CityMarker;
 
@@ -27,11 +31,6 @@ import fcg.travel.CityMarker;
 @SuppressWarnings("serial")
 public class City extends JPanel {
 
-	/**
-	 * All cities
-	 */
-	public static City[] cities = { new DebugCity() };
-
 	private static City addedCity;
 
 	private String cityName;
@@ -43,6 +42,9 @@ public class City extends JPanel {
 	private CityMarker city;
 
 	private Menu menu;
+
+	@SuppressWarnings("javadoc")
+	public static ArrayList<City> cities = new ArrayList<City>();
 
 	/**
 	 * City constructor
@@ -114,6 +116,7 @@ public class City extends JPanel {
 		add(nameLabel);
 		menu = cityMenu();
 		add(menu);
+		cities.add(this);
 	}
 
 	/**
@@ -150,8 +153,8 @@ public class City extends JPanel {
 	 */
 	public int getID() {
 		int ret = -1;
-		for (int i = 0; i < cities.length; i++) {
-			if (cities[i] == this) {
+		for (int i = 0; i < cities.size(); i++) {
+			if (cities.get(i) == this) {
 				ret = i;
 			}
 		}
@@ -169,5 +172,17 @@ public class City extends JPanel {
 
 	protected Menu cityMenu() {
 		return null;
+	}
+
+	/**
+	 * Specifies that method creates cities
+	 * 
+	 * @author Alex
+	 * 
+	 */
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface FCGCityInitialization {
+
 	}
 }

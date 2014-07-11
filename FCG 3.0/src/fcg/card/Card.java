@@ -3,12 +3,15 @@ package fcg.card;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 import fcg.Game;
-import fcg.content.Content;
 import fcg.listeners.ClickedListener;
 import fcg.listeners.DragListener;
 
@@ -20,11 +23,6 @@ import fcg.listeners.DragListener;
  */
 @SuppressWarnings("serial")
 public class Card extends JLabel {
-
-	// Cards
-
-	static LivingCard RIFLEMAN;
-	static LivingCard SOLDIER;
 
 	// End of cards
 
@@ -144,13 +142,14 @@ public class Card extends JLabel {
 	}
 
 	/**
-	 * Creates cards
+	 * Specifies that method creates cards
+	 * 
+	 * @author Alex
+	 * 
 	 */
-	@Content
-	public static void createCards() {
-		SOLDIER = new LivingCard("Soldier", true, 5, 3, "picture.png",
-				"Basic soldier");
-		RIFLEMAN = new LivingCard("Rifleman", true, 5, 5, "picture.png",
-				"Basic rifleman");
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface FCGCardInitialization {
+
 	}
 }

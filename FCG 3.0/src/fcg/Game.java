@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+import fcg.content.LoadContent;
 import fcg.listeners.FrameListener;
 import fcg.listeners.MainListener;
 import fcg.panels.LabelButton;
@@ -86,7 +87,9 @@ public class Game extends JFrame {
 		panel.add(multiPlayer);
 		panel.add(switchUser);
 		frame.add(panel);
-		if (Client.getName() == null)
+		if (Client.getName() == null) {
+			LoadContent.runContent();
 			Client.selectPlayer();
+		}
 	}
 }

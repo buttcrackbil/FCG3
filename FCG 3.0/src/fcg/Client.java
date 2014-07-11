@@ -268,6 +268,6 @@ public class Client {
 	 * @return City id
 	 */
 	public static City getCity() {
-		return City.cities[city];
+		return City.cities.get(city);
 	}
 }
