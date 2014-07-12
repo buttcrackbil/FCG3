@@ -15,15 +15,24 @@ import fcg.city.City.FCGCityInitialization;
 public class LoadContent {
 
 	/**
-	 * @param c
-	 *            Class to be checked for annotation
+	 * Runs MainContent class to set up main content (will be updated in future
+	 * to search through all classes looking for annotations)
 	 */
 	public static void runContent() {
 		if (MainContent.class.isAnnotationPresent(Content.class)) {
 			Method[] m = MainContent.class.getMethods();
 			for (int i = 0; i < m.length; i++) {
-				if (m[i].isAnnotationPresent(FCGCardInitialization.class)
-						|| m[i].isAnnotationPresent(FCGCityInitialization.class)) {
+				if (m[i].isAnnotationPresent(FCGCardInitialization.class)) {
+					try {
+						m[i].invoke(null);
+					} catch (IllegalAccessException | IllegalArgumentException
+							| InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			for (int i = 0; i < m.length; i++) {
+				if (m[i].isAnnotationPresent(FCGCityInitialization.class)) {
 					try {
 						m[i].invoke(null);
 					} catch (IllegalAccessException | IllegalArgumentException

@@ -4,6 +4,9 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import fcg.card.Card;
+import fcg.card.LivingCard;
+
 /**
  * Resets DragListener variable
  * 
@@ -14,8 +17,12 @@ public class ClickedListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+		if (arg0.getSource().getClass() == LivingCard.class) {
+			System.out.println("Is Card");
+			Card card = (Card) arg0.getSource();
+			card.setSelected(!card.isSelected());
+			card.repaint();
+		}
 	}
 
 	@Override

@@ -28,21 +28,21 @@ public class MainContent {
 	public static City DEBUG_CITY;
 
 	/**
-	 * Creates cards
+	 * Creates main cards
 	 */
 	@FCGCardInitialization
-	public static void createCards() {
+	public static void cards() {
 		SOLDIER = new LivingCard("Soldier", true, 5, 3,
-				"fcg/images/picture.png", "Basic soldier");
+				"/fcg/images/picture.png", "Basic soldier");
 		RIFLEMAN = new LivingCard("Rifleman", true, 5, 5,
-				"fcg/images/picture.png", "Basic rifleman");
+				"/fcg/images/picture.png", "Basic rifleman");
 	}
 
 	/**
-	 * Creates cities
+	 * Creates main cities
 	 */
 	@FCGCityInitialization
-	public static void createCities() {
+	public static void cities() {
 		DEBUG_CITY = new DebugCity();
 	}
 }

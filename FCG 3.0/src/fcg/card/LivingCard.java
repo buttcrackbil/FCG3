@@ -108,9 +108,18 @@ public class LivingCard extends Card {
 
 	public void paint(Graphics g) {
 		int offset = 4;
-		g.setColor(Color.GREEN);
+		int borderWidth = 2;
+		if (!selected) {
+			System.out.println("Is not selected");
+			g.setColor(Color.GREEN);
+			borderWidth = 2;
+		} else {
+			System.out.println("Is selected");
+			g.setColor(Color.YELLOW);
+			borderWidth = 4;
+		}
 		g.fillRect(0, 0, getWidth(), getHeight());
-		Picture.addPicture(g, picString, this);
+		Picture.addPicture(g, borderWidth, picString);
 		g.setColor(Color.BLACK);
 		Bar.drawBar(g, 0, getHeight() - 30, Color.BLUE, Color.RED, health,
 				health - damaged);

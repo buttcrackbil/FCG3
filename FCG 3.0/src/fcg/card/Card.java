@@ -28,7 +28,11 @@ public class Card extends JLabel {
 
 	private String name;
 
-	private boolean draggable = true;
+	protected boolean draggable = true;
+
+	protected boolean selectable = false;
+
+	protected boolean selected = false;
 
 	protected String[] description;
 
@@ -70,8 +74,6 @@ public class Card extends JLabel {
 		addMouseMotionListener(new DragListener());
 		addMouseListener(new ClickedListener());
 		setSize(Game.cardWidth, Game.cardHeight);
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
 		g.fillRect(2, 2, getWidth() - offset, getHeight() - offset);
 		g.setColor(Color.BLACK);
@@ -89,12 +91,42 @@ public class Card extends JLabel {
 	}
 
 	/**
+	 * @param b
+	 *            Set true if card can be selected
+	 */
+	public void setSelectable(boolean b) {
+		selectable = b;
+	}
+
+	/**
+	 * @param b
+	 *            Set true if card is selected
+	 */
+	public void setSelected(boolean b) {
+		selected = b;
+	}
+
+	/**
 	 * Checks to see if the card is allowed to be dragged around the screen
 	 * 
 	 * @return True if can be dragged around screen
 	 */
 	public boolean isDraggable() {
 		return draggable;
+	}
+
+	/**
+	 * @return True if card is able to be selected
+	 */
+	public boolean isSelectable() {
+		return selectable;
+	}
+
+	/**
+	 * @return True if card is selected
+	 */
+	public boolean isSelected() {
+		return selected;
 	}
 
 	/**
@@ -142,7 +174,7 @@ public class Card extends JLabel {
 	}
 
 	/**
-	 * Specifies that method creates cards
+	 * Put on a method to create cards
 	 * 
 	 * @author Alex
 	 * 

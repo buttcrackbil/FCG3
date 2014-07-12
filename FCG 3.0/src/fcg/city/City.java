@@ -29,7 +29,7 @@ import fcg.travel.CityMarker;
  * 
  */
 @SuppressWarnings("serial")
-public class City extends JPanel {
+public abstract class City extends JPanel {
 
 	private static City addedCity;
 
@@ -42,6 +42,8 @@ public class City extends JPanel {
 	private CityMarker city;
 
 	private Menu menu;
+
+	Shop shop;
 
 	@SuppressWarnings("javadoc")
 	public static ArrayList<City> cities = new ArrayList<City>();
@@ -115,6 +117,7 @@ public class City extends JPanel {
 		add(ret);
 		add(nameLabel);
 		menu = cityMenu();
+		shop = cityShop();
 		add(menu);
 		cities.add(this);
 	}
@@ -170,16 +173,11 @@ public class City extends JPanel {
 		return city;
 	}
 
-	protected Menu cityMenu() {
-		return null;
-	}
+	protected abstract Menu cityMenu();
 
-	/**
-	 * Specifies that method creates cities
-	 * 
-	 * @author Alex
-	 * 
-	 */
+	protected abstract Shop cityShop();
+
+	@SuppressWarnings("javadoc")
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
 	public @interface FCGCityInitialization {

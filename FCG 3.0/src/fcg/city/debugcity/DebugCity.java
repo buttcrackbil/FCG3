@@ -2,6 +2,7 @@ package fcg.city.debugcity;
 
 import fcg.city.City;
 import fcg.city.Menu;
+import fcg.city.Shop;
 
 /**
  * Debug City
@@ -20,6 +21,11 @@ public class DebugCity extends City {
 	@Override
 	protected Menu cityMenu() {
 		return new DebugCityMenu();
+	}
+
+	@Override
+	protected Shop cityShop() {
+		return new DebugCityShop();
 	}
 
 }

@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import fcg.Game;
+
 /**
  * Loads picture
  * 
@@ -18,18 +20,19 @@ public class Picture {
 	/**
 	 * @param g
 	 *            Graphics object to paint to
+	 * @param borderWidth
+	 *            Width of border
 	 * @param picString
 	 *            Picture name (just filename.extension, not location)
-	 * @param comp
-	 *            Component to be painted to
 	 */
-	public static void addPicture(Graphics g, String picString, Component comp) {
+	public static void addPicture(Graphics g, int borderWidth, String picString) {
 		if (picString != null) {
 			try {
-				BufferedImage myPicture = ImageIO.read(comp.getClass()
+				BufferedImage myPicture = ImageIO.read(Picture.class
 						.getResource(picString));
-				g.drawImage(myPicture, 2, 2, comp.getWidth() - 4,
-						comp.getHeight() - 4, null);
+				g.drawImage(myPicture, borderWidth, borderWidth, Game.cardWidth
+						- (borderWidth * 2), Game.cardHeight
+						- (borderWidth * 2), null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

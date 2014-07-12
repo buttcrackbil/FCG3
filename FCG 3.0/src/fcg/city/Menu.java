@@ -54,7 +54,8 @@ public class Menu extends ScrollablePanel {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					System.out.println("Clicked shop");
+					Client.getCity().add(Client.getCity().shop);
+					Client.getCity().repaint();
 				}
 
 				@Override
