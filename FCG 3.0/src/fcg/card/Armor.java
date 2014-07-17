@@ -3,14 +3,10 @@ package fcg.card;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import fcg.Game;
-import fcg.listeners.ClickedListener;
-import fcg.listeners.DragListener;
-
 /**
  * Creates an armor card
  * 
- * @author A1C Ballou
+ * @author Alex
  * 
  */
 @SuppressWarnings("serial")
@@ -25,14 +21,15 @@ public class Armor extends Card {
 	 *            True to register card, false if making card copy
 	 * @param par1
 	 *            Defense of card
+	 * @param picture
+	 *            Picture to be displayed on card
 	 * @param descriptionLines
 	 *            Description of card
 	 */
-	public Armor(String name, boolean register, int par1,
+	public Armor(String name, boolean register, int par1, String picture,
 			String... descriptionLines) {
-		super(name, register);
+		super(name, picture, register, descriptionLines);
 		armor = par1;
-		description = descriptionLines;
 	}
 
 	/**
@@ -42,25 +39,16 @@ public class Armor extends Card {
 		return armor;
 	}
 
-	public void paint(Graphics g) {
-		int offset = 4;
-		addMouseMotionListener(new DragListener());
-		addMouseListener(new ClickedListener());
-		setSize(Game.cardWidth, Game.cardHeight);
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(Color.GREEN);
-		g.fillRect(2, 2, getWidth() - offset, getHeight() - offset);
-		g.setColor(Color.BLACK);
-		g.drawString(getName(), offset, 10 + offset);
-		for (int i = 0; i < description.length; i++) {
-			if (description[i] != null) {
-				drawLine(this, g, description[i]);
-			}
-		}
-		stringAttempt = 0;
-		lines = 0;
-		g.drawString("Defense: " + armor, offset, getHeight() - offset);
+	@Override
+	public Card copy() {
+		return new Armor(getName(), false, armor, picString, description);
+	}
+
+	@Override
+	public void addComponents(Graphics g, int borderWidth) {
+		g.setColor(Color.GRAY);
+		g.drawString("Defense: " + armor, borderWidth * 2, getHeight()
+				- borderWidth * 2);
 	}
 
 }

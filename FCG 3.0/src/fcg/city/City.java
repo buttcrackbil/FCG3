@@ -64,6 +64,9 @@ public abstract class City extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				Client.getCity().remove(Client.getCity().shop);
+				Menu.shopShowing = false;
+				Client.getCity().repaint();
 				close();
 			}
 

@@ -14,12 +14,6 @@ import fcg.Game;
  */
 public class Bar {
 
-	private static Color[] colors = new Color[2];
-
-	private static int maxPoints;
-
-	private static int coloredPoints;
-
 	/**
 	 * Creates a bar that can track a value
 	 * 
@@ -37,24 +31,26 @@ public class Bar {
 	 *            Max int of the variable
 	 * @param colored
 	 *            Int of filled points
+	 * @param borderWidth
+	 *            Width of the border
 	 */
 	public static void drawBar(Graphics g, int x, int y, Color color1,
-			Color color2, int max, int colored) {
-		int width = Game.cardWidth - 14;
+			Color color2, int max, int colored, int borderWidth) {
+		Color[] colors = new Color[2];
+		int width = Game.cardWidth - (borderWidth * 2) - 10;
 		colors[0] = color1;
 		colors[1] = color2;
-		maxPoints = max * (width / max);
-		coloredPoints = colored * (width / colored);
+		int pointMultiplier = width / max;
 		g.setColor(colors[1]);
-		drawCircle(g, colors[1], x + 2, y, 5);
-		drawRect(g, colors[1], (5) + 2, y, maxPoints, 10);
-		drawCircle(g, colors[0], x + 2, y, 5);
-		drawRect(g, colors[0], (5) + 2, y, coloredPoints, 10);
-		String string = coloredPoints / (width / colored) + "/" + maxPoints
-				/ (width / max);
+		drawCircle(g, colors[1], x + borderWidth, y, 5);
+		drawRect(g, colors[1], 5 + borderWidth, y, max * pointMultiplier, 10);
+		drawCircle(g, colors[0], x + borderWidth, y, 5);
+		drawRect(g, colors[0], 5 + borderWidth, y, colored * pointMultiplier,
+				10);
+		String string = colored + "/" + max;
 		FontMetrics fm = g.getFontMetrics();
 		g.setColor(Color.WHITE);
-		g.drawString(string, (maxPoints - fm.stringWidth(string)) / 2, y + 10);
+		g.drawString(string, (width - fm.stringWidth(string)) / 2, y + 10);
 		g.setColor(Color.BLACK);
 	}
 

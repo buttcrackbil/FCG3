@@ -14,14 +14,25 @@ import fcg.panels.LabelButton;
 import fcg.panels.ScrollablePanel;
 import fcg.travel.Travel;
 
-@SuppressWarnings({ "javadoc", "serial" })
+/**
+ * A panel that can be scrolled even with other panels on it
+ * 
+ * @author Alex
+ * 
+ */
+@SuppressWarnings("serial")
 public class Menu extends ScrollablePanel {
+
+	protected static boolean shopShowing = false;
 
 	protected static LabelButton travel = new LabelButton("Travel",
 			new MouseListener() {
 
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
+					Client.getCity().remove(Client.getCity().shop);
+					shopShowing = false;
+					Client.getCity().repaint();
 					Game.frame.remove(Client.getCity());
 					Travel travel = new Travel();
 					Game.frame.add(travel);
@@ -54,7 +65,11 @@ public class Menu extends ScrollablePanel {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					Client.getCity().add(Client.getCity().shop);
+					if (!shopShowing)
+						Client.getCity().add(Client.getCity().shop);
+					else if (shopShowing)
+						Client.getCity().remove(Client.getCity().shop);
+					shopShowing = !shopShowing;
 					Client.getCity().repaint();
 				}
 
@@ -90,6 +105,9 @@ public class Menu extends ScrollablePanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					System.out.println("Clicked Workshop");
+					Client.getCity().remove(Client.getCity().shop);
+					shopShowing = false;
+					Client.getCity().repaint();
 				}
 
 				@Override
@@ -118,6 +136,10 @@ public class Menu extends ScrollablePanel {
 
 			});
 
+	/**
+	 * @param buttons
+	 *            Buttons to be added to menu
+	 */
 	public Menu(LabelButton... buttons) {
 		super(Game.frame.getWidth() / 15, Game.frame.getHeight(), buttons);
 		setLocation(Game.frame.getWidth() - getWidth(), 0);

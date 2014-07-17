@@ -13,9 +13,9 @@ import fcg.content.MainContent;
 @SuppressWarnings("serial")
 public class DebugCityShop extends Shop {
 
-	private static Card[] cards = { MainContent.RIFLEMAN.copy(),
-			MainContent.SOLDIER.copy(), MainContent.RIFLEMAN.copy(),
-			MainContent.SOLDIER.copy() };
+	private static Card[] cards = { MainContent.RIFLEMAN,
+			MainContent.SOLDIER, MainContent.RIFLEMAN,
+			MainContent.SOLDIER, MainContent.RIFLE };
 
 	@SuppressWarnings("javadoc")
 	public DebugCityShop() {

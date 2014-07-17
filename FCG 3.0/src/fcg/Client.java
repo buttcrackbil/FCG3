@@ -88,6 +88,10 @@ public class Client {
 					} else if (playerName != null) {
 						Game.panel.remove(panel);
 						Game.panel.repaint();
+						Game.quit.setEnabled(true);
+						Game.singlePlayer.setEnabled(true);
+						Game.multiPlayer.setEnabled(true);
+						Game.switchUser.setEnabled(true);
 						getInfo(playerName);
 					}
 					break;
@@ -100,6 +104,16 @@ public class Client {
 						Game.multiPlayer.setEnabled(true);
 						Game.switchUser.setEnabled(true);
 						getInfo(UserLabel.selected.getText());
+					} else if (textField.isVisible()) {
+						String newUser = textField.getText();
+						createUser(newUser);
+						Game.panel.remove(panel);
+						Game.panel.repaint();
+						Game.quit.setEnabled(true);
+						Game.singlePlayer.setEnabled(true);
+						Game.multiPlayer.setEnabled(true);
+						Game.switchUser.setEnabled(true);
+						getInfo(newUser);
 					}
 					break;
 				case "Create New User":

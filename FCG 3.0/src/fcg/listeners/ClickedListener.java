@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import fcg.card.Card;
 import fcg.card.LivingCard;
+import fcg.card.Weapon;
 
 /**
  * Resets DragListener variable
@@ -17,8 +18,8 @@ public class ClickedListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		if (arg0.getSource().getClass() == LivingCard.class) {
-			System.out.println("Is Card");
+		Class<?> cardClass = arg0.getSource().getClass();
+		if (cardClass == LivingCard.class || cardClass == Weapon.class) {
 			Card card = (Card) arg0.getSource();
 			card.setSelected(!card.isSelected());
 			card.repaint();

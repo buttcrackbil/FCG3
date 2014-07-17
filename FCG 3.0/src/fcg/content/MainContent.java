@@ -2,6 +2,7 @@ package fcg.content;
 
 import fcg.card.Card.FCGCardInitialization;
 import fcg.card.LivingCard;
+import fcg.card.Weapon;
 import fcg.city.City;
 import fcg.city.City.FCGCityInitialization;
 import fcg.city.debugcity.DebugCity;
@@ -21,6 +22,8 @@ public class MainContent {
 	public static LivingCard RIFLEMAN;
 	@SuppressWarnings("javadoc")
 	public static LivingCard SOLDIER;
+	@SuppressWarnings("javadoc")
+	public static Weapon RIFLE;
 
 	// Cities
 
@@ -36,6 +39,8 @@ public class MainContent {
 				"/fcg/images/picture.png", "Basic soldier");
 		RIFLEMAN = new LivingCard("Rifleman", true, 5, 5,
 				"/fcg/images/picture.png", "Basic rifleman");
+		RIFLE = new Weapon("Rifle", true, 5, "/fcg/images/picture.png",
+				"Description");
 	}
 
 	/**

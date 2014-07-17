@@ -3,10 +3,6 @@ package fcg.card;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import fcg.Game;
-import fcg.listeners.ClickedListener;
-import fcg.listeners.DragListener;
-
 /**
  * Creates a weapon card
  * 
@@ -39,14 +35,15 @@ public class Weapon extends Card {
 	 *            True to register card, false if making card copy
 	 * @param par1
 	 *            Damage this weapon does
+	 * @param picture
+	 *            Picture to be displayed on card
 	 * @param descriptionLines
 	 *            Description of card
 	 */
-	public Weapon(String name, boolean register, int par1,
+	public Weapon(String name, boolean register, int par1, String picture,
 			String... descriptionLines) {
-		super(name, register);
+		super(name, picture, register, descriptionLines);
 		damage = par1;
-		description = descriptionLines;
 	}
 
 	/**
@@ -57,26 +54,14 @@ public class Weapon extends Card {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		int offset = 4;
-		addMouseMotionListener(new DragListener());
-		addMouseListener(new ClickedListener());
-		descriptionHeight = getHeight() / 2;
-		setSize(Game.cardWidth, Game.cardHeight);
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(Color.GREEN);
-		g.fillRect(2, 2, getWidth() - offset, getHeight() - offset);
-		g.setColor(Color.BLACK);
-		g.drawString(getName(), offset, 10 + offset);
-		for (int i = 0; i < description.length; i++) {
-			if (description[i] != null) {
-				drawLine(this, g, description[i]);
-			}
-		}
-		stringAttempt = 0;
-		lines = 0;
-		g.drawString("Damage: " + damage, offset, getHeight() - offset);
+	public Card copy() {
+		return new Weapon(getName(), false, damage, picString, description);
 	}
 
+	@Override
+	public void addComponents(Graphics g, int borderWidth) {
+		g.setColor(Color.GRAY);
+		g.drawString("Damage: " + damage, borderWidth * 2, getHeight()
+				- borderWidth * 2);
+	}
 }

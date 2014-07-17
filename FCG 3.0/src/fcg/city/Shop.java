@@ -28,8 +28,12 @@ public class Shop extends ScrollablePanel {
 
 	@Override
 	protected void addComponents(JPanel panel, Component... components) {
-		int rows = components.length / 3;
-		if (rows * 3 < components.length) {
+		Card[] cards = new Card[components.length];
+		for (int i = 0; i < cards.length; i++) {
+			cards[i] = ((Card) components[i]).copy();
+		}
+		int rows = cards.length / 3;
+		if (rows * 3 < cards.length) {
 			rows++;
 		}
 		panel.setBackground(Color.BLACK);
@@ -37,12 +41,12 @@ public class Shop extends ScrollablePanel {
 				(Game.cardHeight * rows) + (rows * 10)));
 		int rowCount = 0;
 		int columnCount = 0;
-		for (int i = 0; i < components.length; i++) {
-			((Card) components[i]).setDraggable(false);
-			((Card) components[i]).setSelectable(true);
-			components[i].setLocation((columnCount * Game.cardWidth) + 4,
+		for (int i = 0; i < cards.length; i++) {
+			((Card) cards[i]).setDraggable(false);
+			((Card) cards[i]).setSelectable(true);
+			cards[i].setLocation((columnCount * Game.cardWidth) + 4,
 					(((rowCount * Game.cardHeight) + (rowCount * 10))) + 4);
-			panel.add(components[i]);
+			panel.add(cards[i]);
 			columnCount++;
 			if (columnCount == 3) {
 				rowCount++;

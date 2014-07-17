@@ -3,9 +3,6 @@ package fcg.card;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import fcg.images.Picture;
-import fcg.listeners.ClickedListener;
-import fcg.listeners.DragListener;
 import fcg.panels.Bar;
 
 /**
@@ -22,8 +19,6 @@ public class LivingCard extends Card {
 	private int damaged;
 
 	private int attack;
-
-	private String picString;
 
 	/**
 	 * Creature card
@@ -43,13 +38,9 @@ public class LivingCard extends Card {
 	 */
 	public LivingCard(String par1, boolean register, int par2, int par3,
 			String picture, String... descriptionLines) {
-		super(par1, register);
+		super(par1, picture, register, descriptionLines);
 		health = par2;
 		attack = par3;
-		description = descriptionLines;
-		picString = picture;
-		addMouseMotionListener(new DragListener());
-		addMouseListener(new ClickedListener());
 		descriptionHeight = getHeight() / 2;
 	}
 
@@ -101,37 +92,18 @@ public class LivingCard extends Card {
 		repaint();
 	}
 
-	public LivingCard copy() {
+	@Override
+	public Card copy() {
 		return new LivingCard(getName(), false, health, attack, picString,
 				description);
 	}
 
-	public void paint(Graphics g) {
-		int offset = 4;
-		int borderWidth = 2;
-		if (!selected) {
-			System.out.println("Is not selected");
-			g.setColor(Color.GREEN);
-			borderWidth = 2;
-		} else {
-			System.out.println("Is selected");
-			g.setColor(Color.YELLOW);
-			borderWidth = 4;
-		}
-		g.fillRect(0, 0, getWidth(), getHeight());
-		Picture.addPicture(g, borderWidth, picString);
-		g.setColor(Color.BLACK);
+	@Override
+	public void addComponents(Graphics g, int borderWidth) {
 		Bar.drawBar(g, 0, getHeight() - 30, Color.BLUE, Color.RED, health,
-				health - damaged);
-		g.drawString(getName(), offset, 10 + offset);
-		for (int i = 0; i < description.length; i++) {
-			if (description[i] != null) {
-				drawLine(this, g, description[i]);
-			}
-		}
+				health - damaged, borderWidth);
 		g.setColor(Color.GRAY);
-		stringAttempt = 0;
-		lines = 0;
-		g.drawString("Attack: " + attack, offset, getHeight() - offset);
+		g.drawString("Attack: " + attack, borderWidth * 2, getHeight()
+				- borderWidth * 2);
 	}
 }
